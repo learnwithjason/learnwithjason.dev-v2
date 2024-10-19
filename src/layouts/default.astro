@@ -116,6 +116,16 @@ const { title = 'LWJ Productions' } = Astro.props;
 </script>
 
 <style>
+	/* When the nav popover is visible:
+	   1. Disable anchor tags from being targets of pointer events to prevent clicking links under the popover
+	   2. Ensure that the anchor tags in the nav popover menu still are clickable
+	*/
+	html:has(#menu:popover-open) {
+		a:not(#menu a) {
+			pointer-events: none;
+		}
+	}
+
 	header {
 		inline-size: 100dvi;
 		inset-block-start: 0;
