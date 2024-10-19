@@ -111,6 +111,7 @@ const { title = 'LWJ Productions' } = Astro.props;
 			'[data-name="main-search"]',
 		) as HTMLButtonElement;
 
+		(document.querySelector("#menu:popover-open") as HTMLElement)?.hidePopover();
 		search.click();
 	});
 </script>
