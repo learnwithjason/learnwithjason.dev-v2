@@ -116,6 +116,23 @@ const { title = 'LWJ Productions' } = Astro.props;
 </script>
 
 <style>
+	/* This prevents background scrolling when the nav menu popover is visible. */
+	html:has(#menu:popover-open) {
+		overflow:hidden;
+	}
+
+	/* This allows the header and nav menu popover to be full screen height when the popover is visible. */
+	header:has(#menu:popover-open) {
+		position: fixed;
+		min-height: 100%;
+		top: 0;
+		& .nav-group {
+			position: fixed;
+			min-height: 100%;
+			top: 0;
+		}
+	}
+
 	header {
 		inline-size: 100dvi;
 		inset-block-start: 0;
