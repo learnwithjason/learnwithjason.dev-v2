@@ -117,12 +117,31 @@ const { title = 'LWJ Productions' } = Astro.props;
 
 <style>
 	/* When the nav popover is visible:
-	   1. Disable anchor tags from being targets of pointer events to prevent clicking links under the popover
-	   2. Ensure that the anchor tags in the nav popover menu still are clickable
+		1. Disable anchor tags from being targets of pointer events to prevent clicking links under the popover
+		2. Ensure that the anchor tags in the nav popover menu still are clickable
 	*/
 	html:has(#menu:popover-open) {
+		/* This prevents background scrolling when the nav menu popover is visible. */
+		overflow:hidden;
+ 
+		/* When the nav popover is visible:
+			1. Disable anchor tags from being targets of pointer events to prevent clicking links under the popover
+			2. Ensure that the anchor tags in the nav popover menu still are clickable
+		*/
 		a:not(#menu a) {
 			pointer-events: none;
+		}
+	}
+
+	/* This allows the header and nav menu popover to be full screen height when the popover is visible. */
+	header:has(#menu:popover-open) {
+		position: fixed;
+		min-height: 100%;
+		top: 0;
+		& .nav-group {
+			position: fixed;
+			min-height: 100%;
+			top: 0;
 		}
 	}
 
@@ -194,7 +213,20 @@ const { title = 'LWJ Productions' } = Astro.props;
 			}
 
 			.nav-toggle {
+				align-self: center;
+				background: color-mix(in oklch, var(--gray-400) 60%, transparent);
+				border: 1px solid color-mix(in oklch, var(--white) 15%, transparent);
+				border-radius: 1.5rem;
+				box-shadow: 0 1px 2px color-mix(in oklch, var(--gray-500) 80%, transparent);
+				color: var(--white);
+				font-family: jwf-medium;
+				font-size: 0.875rem;
+				justify-self: center;
+				letter-spacing: 0.1em;
+				line-height: 1.75;
+				padding: 0.5rem 1.625rem;
 				pointer-events: all;
+				text-transform: uppercase;
 
 				@media (min-width: 1080px) {
 					display: none;
